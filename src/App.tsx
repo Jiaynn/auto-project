@@ -4,9 +4,12 @@ import reactLogo from "./assets/react.svg";
 
 import "./App.css";
 
-const App: React.FC = () => {
+interface IProps {
+  value: string;
+}
+const App: React.FC<IProps> = (props) => {
+  const { value } = props;
   const [count, setCount] = useState(0);
-
   return (
     <div className="App">
       <div>
@@ -31,6 +34,7 @@ const App: React.FC = () => {
         </p>
       </div>
       <p className="read-the-docs">on the Vite and React logos to learn more</p>
+      <p>{value}</p>
     </div>
   );
 };
