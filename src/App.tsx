@@ -6,6 +6,7 @@ import "./App.css";
 
 const App: React.FC = () => {
   const [count, setCount] = useState(0);
+
   return (
     <div className="App">
       <div>
@@ -23,7 +24,7 @@ const App: React.FC = () => {
             setCount((count) => count + 1);
           }}
         >
-          count is {count}
+          count is {a}
         </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
