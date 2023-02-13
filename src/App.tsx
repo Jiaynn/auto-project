@@ -24,7 +24,7 @@ const App: React.FC = () => {
             setCount((count) => count + 1);
           }}
         >
-          count is {a}
+          count is {aa}
         </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
