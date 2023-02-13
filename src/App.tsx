@@ -6,7 +6,6 @@ import "./App.css";
 
 const App: React.FC = () => {
   const [count, setCount] = useState(0);
-  a = 1;
   return (
     <div className="App">
       <div>
