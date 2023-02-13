@@ -8,7 +8,8 @@
     "preview": "vite preview",
     "prepare": "husky install",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --fix --quiet ./",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "start": "git-cz"
   },
   "lint-staged": {
     "packages/**/src/**/*.{ts,tsx}": [
