@@ -1,0 +1,96 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true,
+    "es6": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "react-hooks",
+    "simple-import-sort",
+    "import",
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {},
+      {
+        "usePrettierrc": false
+      }
+    ],
+    "react-hooks/rules-of-hooks": "error",
+    // Checks rules of Hooks
+    "react-hooks/exhaustive-deps": "warn",
+    // Checks effect dependencies
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-var-requires": 0,
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
+    "react/prop-types": "off",
+    "simple-import-sort/exports": "error",
+    "simple-import-sort/imports": [
+      "error",
+      {
+        // https://github.com/lydell/eslint-plugin-simple-import-sort/blob/v5.0.2/src/sort.js#L3-L15
+        "groups": [
+          // Side effect imports
+          [
+            "^\\u0000"
+          ],
+          // Packages
+          [
+            // React first
+            "^react$",
+            // Things that start with a letter (or digit or underscore), or `@` followed by a letter
+            "^@?\\w"
+          ],
+          // Absolute imports and other imports such as Vue-style `@/foo`
+          // Anything that does not start with a dot
+          [
+            "^[^.]"
+          ],
+          // Relative imports
+          [
+            // https://github.com/lydell/eslint-plugin-simple-import-sort/issues/15
+            // ../whatever/
+            "^\\.\\./(?=.*/)",
+            // ../
+            "^\\.\\./",
+            // ./whatever/
+            "^\\./(?=.*/)",
+            // Anything that starts with a dot
+            "^\\.",
+            // .html are not side effect imports
+            "^.+\\.html$"
+          ],
+          [
+            "^(./|../).*.s?css$"
+          ]
+        ]
+      }
+    ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
