@@ -9,9 +9,7 @@
     "prepare": "husky install",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --fix --quiet ./",
     "lint-staged": "lint-staged",
-    "start": "git-cz",
-    "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "start": "git-cz"
   },
   "lint-staged": {
     "packages/**/src/**/*.{ts,tsx}": [
@@ -52,7 +50,6 @@
     "husky": "^8.0.3",
     "prettier": "^2.8.4",
     "typescript": "*",
-    "vite": "^4.1.0",
-    "vitest": "^0.28.5"
+    "vite": "^4.1.0"
   }
 }
