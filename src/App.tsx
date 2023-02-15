@@ -30,7 +30,7 @@ const App: React.FC<IProps> = (props) => {
           count is {count}
         </button>
       </div>
-      <p className="read-the-docs">on the Vite and React logos to learn more</p>
+      <p className="read-the-docs">on the Vite and React logos to more</p>
       <p>{value}</p>
     </div>
   );
