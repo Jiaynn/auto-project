@@ -48,7 +48,7 @@ jobs:
 
       - name: 打包镜像, 上传 Docker Hub
         run: |
-          docker login -u ${{ secrets.DOCKER_USERNAME }} -p  ${{ secrets.DOCKER_PASSWORD }}
+          docker login -u ${{secrets.DOCKER_USERNAME }} -p  ${{ secrets.DOCKER_PASSWORD }}
           docker build --platform linux/amd64 -t lijiayan/auto-project:latest  .
           docker push ${{ secrets.DOCKER_REPOSITORY }}
 
@@ -60,6 +60,6 @@ jobs:
           password: ${{ secrets.REMOTE_PASSWORD }}
           # 执行脚本
           script: |
-            deploy.sh ${{ variables.USE_NAME }} ${{ variables.IMAGE_NAME }} ${{ variables.PORT }}  ${{ variables.CONTAINS_PORT }}
+            deploy.sh lijiayan auto-projec 91 80 
 
      
