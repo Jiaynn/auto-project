@@ -60,6 +60,6 @@ jobs:
           password: ${{ secrets.REMOTE_PASSWORD }}
           # 执行脚本
           script: |
-            deploy.sh lijiayan auto-project 91 80 
+            deploy.sh lijiayan auto-project 92 80 
 
      
