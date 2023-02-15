@@ -49,7 +49,7 @@ jobs:
       - name: 打包镜像, 上传 Docker Hub
         run: |
           docker login -u ${{secrets.DOCKER_USERNAME }} -p  ${{ secrets.DOCKER_PASSWORD }}
-          docker build --platform linux/amd64 -t auto-project:latest  .
+          docker build --platform linux/amd64 -t lijiayan/auto-project:latest  .
           docker push ${{ secrets.DOCKER_REPOSITORY }}
 
       - name: 登录服务器, 执行脚本
