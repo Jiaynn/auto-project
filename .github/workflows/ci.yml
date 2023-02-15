@@ -46,15 +46,20 @@ jobs:
       - name: build project
         run: yarn build
 
-       # Runs a single command using the runners shell
-      - name: Build docker image
-        run: docker build -t auto-project:latest .
+      - name: 打包镜像, 上传 Docker Hub
+        run: |
+          docker login -u ${{secrets.DOCKER_USERNAME }} -p  ${{ secrets.DOCKER_PASSWORD }}
+          docker build --platform linux/amd64 -t auto-project:latest  .
+          docker push ${{ secrets.DOCKER_REPOSITORY }}
 
-      # Runs a set of commands using the runners shell
-      - name: Create container by image
-        run: docker run -d -p 3000:91 --name docker-test auto-project  
-
-      - name: Start container log
-        run: docker container ls
+      - name: 登录服务器, 执行脚本
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: root
+          password: ${{ secrets.REMOTE_PASSWORD }}
+          # 执行脚本
+          script: |
+            deploy.sh
 
      
