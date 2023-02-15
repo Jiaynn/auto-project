@@ -42,10 +42,13 @@ jobs:
       - name: Running Lint
         # 通过前面章节定义的命令行执行代码扫描
         run: yarn lint
-      
+
+      - name: build project
+        run: yarn build
+
        # Runs a single command using the runners shell
       - name: Build docker image
-        run: docker build -t auto-project .
+        run: docker build -t auto-project:latest .
 
       # Runs a set of commands using the runners shell
       - name: Create container by image
