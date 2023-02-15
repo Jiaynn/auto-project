@@ -60,6 +60,6 @@ jobs:
           password: ${{ secrets.REMOTE_PASSWORD }}
           # 执行脚本
           script: |
-            deploy.sh lijiayan auto-project 3000 80 
+            deploy.sh $USE_NAME $IMAGE_NAME $PORT $CONTAINS_PORT
 
      
