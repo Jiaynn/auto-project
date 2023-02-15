@@ -60,6 +60,6 @@ jobs:
           password: ${{ secrets.REMOTE_PASSWORD }}
           # 执行脚本
           script: |
-            deploy.sh {{ variables.USE_NAME }} {{ variables.IMAGE_NAME }} {{ variables.PORT }}  {{ variables.CONTAINS_PORT }}
+            deploy.sh ${{ variables.USE_NAME }} ${{ variables.IMAGE_NAME }} ${{ variables.PORT }}  ${{ variables.CONTAINS_PORT }}
 
      
