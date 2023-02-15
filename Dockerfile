@@ -1,3 +1,3 @@
 FROM nginx  
-COPY dist/ /usr/share/nginx/html/  
+COPY dist/ /www/wwwroot/auto.com/ 
 COPY default.conf /etc/nginx/conf.d/default.conf  
