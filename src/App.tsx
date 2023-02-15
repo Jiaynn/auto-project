@@ -29,9 +29,6 @@ const App: React.FC<IProps> = (props) => {
         >
           count is {count}
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
       </div>
       <p className="read-the-docs">on the Vite and React logos to learn more</p>
       <p>{value}</p>
