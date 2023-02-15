@@ -52,7 +52,7 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Create container by image
-        run: docker run -d -p 3000:80 --name docker-test auto-project  
+        run: docker run -d -p 3000:91 --name docker-test auto-project  
 
       - name: Start container log
         run: docker container ls
