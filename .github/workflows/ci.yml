@@ -1,11 +1,11 @@
 name: CI
 # Event设置为main分支的pull request事件，
 # 这里的main分支相当于master分支，github项目新建是把main设置为默认分支，我懒得改了所以就保持这样吧
-env:
-  USER_NAME: lijiayan
-  IMAGE_NAME: auto-project
-  PORT: 92
-  CONTAINS_PORT: 80
+# env:
+#   USER_NAME: lijiayan
+#   IMAGE_NAME: auto-project
+#   PORT: 92
+#   CONTAINS_PORT: 80
 on:
   pull_request:
     branches: master
@@ -65,6 +65,6 @@ jobs:
           password: ${{ secrets.REMOTE_PASSWORD }}
           # 执行脚本
           script: |
-            deploy.sh env.USER_NAME env.IMAGE_NAME env.PORT env.CONTAINS_PORT
+            deploy.sh ${{ vars.USER_NAME }} ${{ vars.IMAGE_NAME }} ${{ vars.PORT }} ${{ vars.CONTAINS_PORT }}
 
      
