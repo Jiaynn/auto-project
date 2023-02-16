@@ -1,4 +1,4 @@
-## 一个基于Git Actions 的 CI/CD 流程
+## 一个基于 Git Actions 的 CI/CD 流程
 
 ### ✨ Features
 - 🌈 eslint、prettier
@@ -48,3 +48,4 @@ auto-project
 └─ vitest.config.ts          
 
 ```
+### ⚠️注意deploy.sh中的变量需要在github中进行配置secrets和vars
