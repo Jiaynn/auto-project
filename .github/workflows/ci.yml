@@ -1,6 +1,11 @@
 name: CI
 # Event设置为main分支的pull request事件，
 # 这里的main分支相当于master分支，github项目新建是把main设置为默认分支，我懒得改了所以就保持这样吧
+# env:
+#   USER_NAME: lijiayan
+#   IMAGE_NAME: auto-project
+#   PORT: 92
+#   CONTAINS_PORT: 80
 on:
   pull_request:
     branches: master
@@ -37,21 +42,29 @@ jobs:
       - name: Installing Dependencies
         # 如果缓存标志位没命中，则执行该step。否则就跳过该step
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
-        run: pnpm install
+        run: yarn install
       # 运行代码扫描
       - name: Running Lint
         # 通过前面章节定义的命令行执行代码扫描
-        run: pnpm lint-staged
-      
-       # Runs a single command using the runners shell
-      - name: Build docker image
-        run: docker build -t auto-project .
+        run: yarn lint
 
-      # Runs a set of commands using the runners shell
-      - name: Create container by image
-        run: docker run -d -p 3000:80 --name docker-test auto-project  
+      - name: build project
+        run: yarn build
 
-      - name: Start container log
-        run: docker container ls
+      - name: 打包镜像, 上传 Docker Hub
+        run: |
+          docker login -u ${{secrets.DOCKER_USERNAME }} -p  ${{ secrets.DOCKER_PASSWORD }}
+          docker build --platform linux/amd64 -t ${{ vars.USER_NAME }}/${{ vars.IMAGE_NAME }}:latest  .
+          docker push ${{ secrets.DOCKER_REPOSITORY }}
+
+      - name: 登录服务器, 执行脚本
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: root
+          password: ${{ secrets.REMOTE_PASSWORD }}
+          # 执行脚本
+          script: |
+            deploy.sh ${{ vars.USER_NAME }} ${{ vars.IMAGE_NAME }} ${{ vars.PORT }} ${{ vars.CONTAINS_PORT }}
 
      
