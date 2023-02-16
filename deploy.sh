@@ -8,6 +8,7 @@ if [ "$1" == "" ]  || [ "$2" == "" ] || [ "$3" == "" ] ; then
   exit
 fi
 
+# 删除容器
 containerId=`docker ps -a | grep ${image_name} | awk '{print $1}'`
 if [ "$containerId" != "" ] ; then
 docker stop $containerId

@@ -2,8 +2,6 @@ import React, { useState } from "react";
 
 import reactLogo from "./assets/react.svg";
 
-import "./App.css";
-
 interface IProps {
   value: string;
 }

@@ -1,6 +1,11 @@
 name: CI
 # Event设置为main分支的pull request事件，
 # 这里的main分支相当于master分支，github项目新建是把main设置为默认分支，我懒得改了所以就保持这样吧
+env:
+  USER_NAME: lijiayan
+  IMAGE_NAME: auto-project
+  PORT: 92
+  CONTAINS_PORT: 80
 on:
   pull_request:
     branches: master
@@ -49,7 +54,7 @@ jobs:
       - name: 打包镜像, 上传 Docker Hub
         run: |
           docker login -u ${{secrets.DOCKER_USERNAME }} -p  ${{ secrets.DOCKER_PASSWORD }}
-          docker build --platform linux/amd64 -t lijiayan/auto-project:latest  .
+          docker build --platform linux/amd64 -t $USER_NAME/$IMAGE_NAME:latest  .
           docker push ${{ secrets.DOCKER_REPOSITORY }}
 
       - name: 登录服务器, 执行脚本
@@ -60,6 +65,6 @@ jobs:
           password: ${{ secrets.REMOTE_PASSWORD }}
           # 执行脚本
           script: |
-            deploy.sh lijiayan auto-project 92 80 
+            deploy.sh $USER_NAME $IMAGE_NAME $PORT $CONTAINS_PORT
 
      
