@@ -51,20 +51,20 @@ jobs:
       - name: build project
         run: yarn build
 
-      # - name: 打包镜像, 上传 Docker Hub
-      #   run: |
-      #     docker login -u ${{secrets.DOCKER_USERNAME }} -p  ${{ secrets.DOCKER_PASSWORD }}
-      #     docker build --platform linux/amd64 -t ${{ vars.USER_NAME }}/${{ vars.IMAGE_NAME }}:latest  .
-      #     docker push ${{ secrets.DOCKER_REPOSITORY }}
+      - name: 打包镜像, 上传 Docker Hub
+        run: |
+          docker login -u ${{secrets.DOCKER_USERNAME }} -p  ${{ secrets.DOCKER_PASSWORD }}
+          docker build --platform linux/amd64 -t ${{ vars.USER_NAME }}/${{ vars.IMAGE_NAME }}:latest  .
+          docker push ${{ secrets.DOCKER_REPOSITORY }}
 
-      # - name: 登录服务器, 执行脚本
-      #   uses: appleboy/ssh-action@master
-      #   with:
-      #     host: ${{ secrets.REMOTE_HOST }}
-      #     username: root
-      #     password: ${{ secrets.REMOTE_PASSWORD }}
-      #     # 执行脚本
-      #     script: |
-      #       deploy.sh ${{ vars.USER_NAME }} ${{ vars.IMAGE_NAME }} ${{ vars.PORT }} ${{ vars.CONTAINS_PORT }}
+      - name: 登录服务器, 执行脚本
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: root
+          password: ${{ secrets.REMOTE_PASSWORD }}
+          # 执行脚本
+          script: |
+            deploy.sh ${{ vars.USER_NAME }} ${{ vars.IMAGE_NAME }} ${{ vars.PORT }} ${{ vars.CONTAINS_PORT }}
 
      
