@@ -1,5 +1,5 @@
 # 设置基础镜像 
-FROM daocloud.io/library/nginx:1.9.1
+FROM nginx:latest
 # 定义作者
 MAINTAINER jiaynn
 # 添加时区环境变量，亚洲，上海
