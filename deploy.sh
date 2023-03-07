@@ -56,6 +56,10 @@ fi
 
 docker login -u lijiayan -p dckr_pat_mobpPjGaAth2MxK6Ww2gaCh77q4
 docker pull ${user_name}/${image_name}:latest
+# 如果服务器重启后，我们需要重新启动docker
+# 执行 systemctl restart docker 重新启动docker
+# 但docker启动了，里面的镜像没有启动，所以我们添加--restart=always ，在启动容器后，镜像也能重新启动
+# dokcer ps -a 查看所有的容器
 docker run -d -p $3:$4 --name $image_name --restart=always ${user_name}/${image_name}:latest
 echo "Start Container Successs"
 echo "$image_name"
